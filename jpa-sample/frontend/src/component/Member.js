@@ -8,6 +8,7 @@ const Member = () => {
 	useEffect(async () => {
 		try {
 			const result = await axios.get('/api/v1/member');
+			console.log(result.data);
 			setData(result.data);
 		} catch (e) {
 			console.log(e);
@@ -20,13 +21,19 @@ const Member = () => {
 					<tr>
 						<th>id</th>
 						<th>name</th>
+						<th>city</th>
+						<th>street</th>
+						<th>zipcode</th>
 					</tr>
 				</thead>
 				<tbody>
-					{data.map(({ id, name }) => (
-						<tr key={id + name}>
+					{data.map(({ id, name, address }) => (
+						<tr key={id + name + address}>
 							<td>{id}</td>
 							<td>{name}</td>
+							<td>{address.city}</td>
+							<td>{address.street}</td>
+							<td>{address.zipcode}</td>
 						</tr>
 					))}
 				</tbody>

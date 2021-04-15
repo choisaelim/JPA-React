@@ -4,6 +4,7 @@ import javax.annotation.PostConstruct;
 import javax.persistence.EntityManager;
 
 import com.example.jpasample.domain.Member;
+import com.example.jpasample.type.Address;
 
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,7 +29,7 @@ public class InitDb {
     private final EntityManager em;
 
     public void dbInit1() {
-      Member member = createMember("userA", "서울", "1", "1111");
+      Member member = createMember("userA", "서울", "가로수길", "23078");
       em.persist(member);
 
       // Book book1 = createBook("JPA1 BOOK", 10000, 100);
@@ -46,7 +47,7 @@ public class InitDb {
     }
 
     public void dbInit2() {
-      Member member = createMember("userB", "서울", "1", "1111");
+      Member member = createMember("userB", "서울", "충장로", "51103");
       em.persist(member);
 
       // Book book1 = createBook("SPRING1 BOOK", 10000, 100);
@@ -66,7 +67,7 @@ public class InitDb {
     private Member createMember(String name, String city, String street, String zipcode) {
       Member member = new Member();
       member.setName(name);
-      // member.setHomeAddress(new Address(city, street, zipcode));
+      member.setAddress(new Address(city, street, zipcode));
       return member;
     }
 
