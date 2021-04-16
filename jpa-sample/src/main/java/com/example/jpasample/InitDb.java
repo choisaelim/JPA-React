@@ -4,6 +4,7 @@ import javax.annotation.PostConstruct;
 import javax.persistence.EntityManager;
 
 import com.example.jpasample.domain.Member;
+import com.example.jpasample.type.Address;
 
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -66,7 +67,7 @@ public class InitDb {
     private Member createMember(String name, String city, String street, String zipcode) {
       Member member = new Member();
       member.setName(name);
-      // member.setHomeAddress(new Address(city, street, zipcode));
+      member.setAddress(new Address(city, street, zipcode));
       return member;
     }
 
