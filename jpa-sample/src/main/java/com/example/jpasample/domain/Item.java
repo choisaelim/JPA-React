@@ -31,4 +31,16 @@ public abstract class Item {
 
   @OneToMany(mappedBy = "item")
   private List<CategoryItem> categories;
+
+  public void addStock(int quantity) {
+    this.stockQuantity += quantity;
+  }
+
+  public void removeStock(int quantity) throws Exception {
+    int restStock = stockQuantity - quantity;
+    if (restStock < 0) {
+      throw new Exception("need more stock");
+    }
+    this.stockQuantity = restStock;
+  }
 }
