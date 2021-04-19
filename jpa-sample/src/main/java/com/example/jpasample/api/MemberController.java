@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 import com.example.jpasample.domain.Member;
 import com.example.jpasample.service.MemberService;
+import com.example.jpasample.type.Address;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,7 +22,8 @@ public class MemberController {
   public List<MemberDto> getMember() {
     List<Member> members = memberService.getMember();
 
-    List<MemberDto> collect = members.stream().map(member -> new MemberDto(member.getId(), member.getName()))
+    List<MemberDto> collect = members.stream()
+        .map(member -> new MemberDto(member.getId(), member.getName(), member.getAddress()))
         .collect(Collectors.toList());
 
     return collect;
@@ -29,13 +31,15 @@ public class MemberController {
 
   @Data
   static class MemberDto {
-    public MemberDto(Long id, String name) {
+    public MemberDto(Long id, String name, Address address) {
       this.id = id;
       this.name = name;
+      this.address = address;
     }
 
     private Long id;
     private String name;
+    private Address address;
 
   }
 }

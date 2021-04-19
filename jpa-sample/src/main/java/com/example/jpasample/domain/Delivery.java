@@ -33,4 +33,10 @@ public class Delivery {
 
   @Enumerated(EnumType.STRING)
   private DeliveryStatus deliveryStatus;
+
+  public static Delivery createDelivery(Address address) {
+    Delivery delivery = new Delivery();
+    delivery.setAddress(address);
+    return delivery;
+  }
 }

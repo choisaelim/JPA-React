@@ -33,4 +33,10 @@ public class Member {
   @OneToMany(mappedBy = "member")
   private List<Order> orders;
 
+  public static Member createMember(String name, String city, String street, String zipcode) {
+    Member member = new Member();
+    member.setName(name);
+    member.setAddress(new Address(city, street, zipcode));
+    return member;
+  }
 }

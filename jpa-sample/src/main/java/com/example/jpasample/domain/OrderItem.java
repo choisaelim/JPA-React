@@ -31,4 +31,14 @@ public class OrderItem {
   private int orderPrice;
 
   private int count;
+
+  public static <T extends Item> OrderItem createOrderItem(T item, int price, int count) throws Exception {
+    OrderItem orderItem = new OrderItem();
+    orderItem.setItem(item);
+    orderItem.setOrderPrice(price);
+    orderItem.setCount(count);
+
+    item.removeStock(count);
+    return orderItem;
+  }
 }
